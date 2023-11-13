@@ -34,11 +34,17 @@
 // checkWinner(scoreDolphins, scoreKoalas);
 
 // console.log(x)
-// console.log(name)
+// console.log(name())
+// console.log(num)
 // var x = 'kavinesh';
 // console.log(x)
+
 // function name(){
 //   console.log('im kavinesh')
+// }
+
+// const num = function(){
+//     console.log('Hey')
 // }
 
 // var name = () => {
@@ -55,30 +61,129 @@
 //   console.log(error)
 //   }
 
-var expect = function (val) {
-  var toBe = function (arg) {
-    if (val === arg) {
-      return true;
-    } else {
-      throw new Error('Not Equal');
-    }
-  };
+// const calcAge = function (birthYear){
+//     console.log(2023 - birthYear);
+//     console.log(this)
+// }
 
-  var notTobe = function (num) {
-    if (val !== num) {
-      return true;
-    } else {
-      throw new Error('Equal');
-    }
-  };
+// calcAge(2004)
 
-  return {
-    toBe,
-    notTobe
-  };
+// const calcArrow = birthYear => {
+//     console.log(2023 - birthYear);
+//     console.log(this)
+// }
+
+// calcArrow(2004)
+
+// var firstName = 'Kavinesh';
+
+// const something = {
+//   firstName: 'Dev',
+//   year: 2004,
+
+//   calcAge: function () {
+//     console.log(2023 - this.year);
+//     // console.log(this.firstName);
+
+//     const isTeen = () => {
+//       if (2023 - this.year >= 18) {
+//         console.log('This mf is a teen');
+//       }
+//     };
+
+//     isTeen();
+//   },
+
+//   greet: () => {
+//     console.log(`Hey ${this.firstName}`);
+//     console.log(this);
+//   },
+// };
+
+// something.calcAge();
+// something.greet();
+
+// const add = function(a,b){
+//   console.log(arguments)
+//   // return a + b;
+// }
+
+// var map = function(arr, fn) {
+//   return fn(arr);
+// }
+
+// function plusOne(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i] = arr[i] + 1;
+//   }
+//   return arr;
+// }
+
+// var map = function (arr, fn) {
+//   var result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     result.push(fn(arr[i], i));
+//   }
+//   return result;
+// };
+
+// var plusOne = function (n) {
+//   return n + 1;
+// };
+
+// var plusI = function (n, i) {
+//   return n + i;
+// };
+
+// var constant = function (n) {
+//   return (n = 42);
+// };
+
+// var santhosh = function (n) {
+//   return (n = 'santhosh');
+// };
+
+// console.log(map([1, 2, 3], plusOne));
+// console.log(map([1, 2, 3], plusI));
+// console.log(map([1, 2, 3], constant));
+// console.log(map([1, 2, 3], santhosh));
+
+//Primitive types
+// let age = 19;
+// let oldAge = age;
+// age = 20;
+// console.log(age);
+// console.log(oldAge);
+
+//Reference types
+// const me = {
+//   name: 'Jonas',
+//   age: 30
+// }
+
+//Object.assing() -> use to copy the object
+//Copying objects
+// const friend = Object.assign({}, me);
+// friend.age = 27;
+
+//console.log('Friend: ', friend);
+// {name: 'Jonas', age:27;
+//console.log('Me: ', me);
+// {name: 'Jonas', age: 27
+
+console.log(addDecl(2, 3));
+console.log(addExpr(2, 3));
+console.log(addArrow(2, 3));
+
+//Function declaration can be hoisted
+function addDecl(a, b) {
+  return a + b;
+}
+
+//Function expression can be hoisted if it's created using var keyword
+var addExpr = function (a, b) {
+  return a + b;
 };
 
-const hello = expect(8)
-//expect(8).toBe(9);
-console.log(hello.toBe(8));
-console.log(hello.notTobe(8));
+//Arrow functions can be hoisted if it's created using var keyword
+var addArrow = (a, b) => a + b;
