@@ -1,0 +1,66 @@
+html {
+    font-size: 10px;
+    background-image: url('https://wallpapercave.com/wp/YMDSifI.jpg');
+    background-size: cover;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.party{
+    display: flex;
+    justify-content: center;
+}
+
+.lets-party{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(17, 175, 228, 0.66);
+}
+
+.keys {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.key {
+    border: .4rem solid black;
+    border-radius: .5rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: .5rem .5rem;
+    text-align: center;
+    transition: all 0.06s ease;
+    color: white;
+    width: 10rem;
+    background-color: rgba(0, 0, 0, 0.019);
+}
+
+kbd {
+    display: block;
+    font-size: 4rem
+}
+
+
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+
+.sound {
+    font-size: 1rem;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 0, 0.732);
+    font-weight: 700;
+}

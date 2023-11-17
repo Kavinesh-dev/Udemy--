@@ -190,38 +190,38 @@
 
 //=====================Destructuring Arrays=========================
 
-const restaurant = {
-  name: 'Classico Italiano',
-  place: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours: {
-    thu: {
-      opening: 12,
-      closing: 22,
-    },
-    fri: {
-      opening: 11,
-      closing: 23,
-    },
-    sat: {
-      opening: 0, // Open 24 hours
-      closing: 24,
-    },
-  },
-  order: function (startIndex, mainIndex) {
-    return [this.categories[startIndex], this.starterMenu[mainIndex]];
-  },
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   place: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours: {
+//     thu: {
+//       opening: 12,
+//       closing: 22,
+//     },
+//     fri: {
+//       opening: 11,
+//       closing: 23,
+//     },
+//     sat: {
+//       opening: 0, // Open 24 hours
+//       closing: 24,
+//     },
+//   },
+//   order: function (startIndex, mainIndex) {
+//     return [this.categories[startIndex], this.starterMenu[mainIndex]];
+//   },
 
-  userOrder: function({startIndexValue, mainIndexValue, address, time}){
-    console.log(`Your order of ${this.starterMenu[startIndexValue]} and ${this.mainMenu[mainIndexValue]} will be delivered to ${address} by ${time}`)
-  },
+//   userOrder: function({startIndexValue, mainIndexValue, address, time}){
+//     console.log(`Your order of ${this.starterMenu[startIndexValue]} and ${this.mainMenu[mainIndexValue]} will be delivered to ${address} by ${time}`)
+//   },
 
-  unlimited: function(...damn){
-    console.log(damn)
-  }
-};
+//   unlimited: function(...damn){
+//     console.log(damn)
+//   }
+// };
 
 //1.Getting first and second values in categories.
 
@@ -284,10 +284,9 @@ const restaurant = {
 // const val = [...restaurant.starterMenu, ...restaurant.categories];
 // console.log(val);
 
-
 //=====================Rest Operator========================
 
-//1. Getting unlimited function with one parameters but passing multiple arguments 
+//1. Getting unlimited function with one parameters but passing multiple arguments
 // restaurant.unlimited(12, 18, 19, 19, 20, 90, 89, 100, 101, 190, 67, 90, 8888888);
 
 //
@@ -299,29 +298,97 @@ const restaurant = {
 // const [i, ...others] = name;
 // console.log(i, ...others)
 
-
 //======================Short Circuiting======================
 
 //====OR OPERATOR==== - It actually short circuits when the first value is true
-console.log('==============OR OPERATOR================');
+// console.log('==============OR OPERATOR================');
 
-console.log(0 || true);
-console.log('false' || undefined);
-console.log(null || 'damn she\'s gorgeous');
-console.log(0 || 0);
-console.log(true || true);
-console.log(0 || undefined || null || 'first' || true) ;
+// console.log(0 || true);
+// console.log('false' || undefined);
+// console.log(null || 'damn she\'s gorgeous');
+// console.log(0 || 0);
+// console.log(true || true);
+// console.log(0 || undefined || null || 'first' || true) ;
 
-//====AND OPERATOR==== - It actually short circuits when it encounters a falsy value
-console.log('==============AND OPERATOR================')
+// //====AND OPERATOR==== - It actually short circuits when it encounters a falsy value
+// console.log('==============AND OPERATOR================')
 
-console.log(0 && true);
-console.log('false' && undefined);
-console.log(null && 'damn she\'s gorgeous');
-console.log(0 && 0);
-console.log(true && true);
+// console.log(0 && true);
+// console.log('false' && undefined);
+// console.log(null && 'damn she\'s gorgeous');
+// console.log(0 && 0);
+// console.log(true && true);
 
-let me;
+// let me;
 
-let condition = me ? me = 'divyesh' : 10
-console.log(condition);
+// let condition = me ? me = 'divyesh' : 10
+// console.log(condition);\
+
+// // Input
+// const nums = [1, 2, 3, 4];
+// const fn = function sum(accum, curr) {
+//   return accum + curr;
+// };
+// const init = 0;
+
+// // Function to accumulate the values
+// const result = nums.reduce(fn, init);
+
+// // Output
+
+// console.log(result);
+
+// Input
+// const nums = [1, 2, 3, 4];
+// const fn = function sum(accum, curr) {
+//   return accum + curr * curr;
+// };
+// const init = 100;
+
+// // Function to accumulate the values
+// const result = nums.reduce(fn, init);
+
+// // Output
+// console.log(result);
+// const nums = [1,2,3,4];
+// const reduce = function(nums, fn, init){
+//     let val = init;
+//     for(let i = 0; i < nums.length; i++){
+//         val = fn(val, nums[i]);
+//     }
+//     return val;
+// }
+// let init = 0
+// var sum = function(acum, curr){
+//     return acum + curr;
+// }
+
+// console.log(reduce(nums, sum, init))
+
+var filter = function (arr, fn) {
+  var result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (fn(arr[i], i)) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+
+function greaterThan(n) {
+  console.log(n);
+  return n >= 10;
+}
+function firstIndex(n, i) {
+  console.log(n, i);
+  return i === 0;
+}
+
+function plusOne(n) {
+  console.log(n);
+  return n + 1;
+}
+
+console.log(filter([0, 10, 20, 30], greaterThan));
+console.log(filter([1, 2, 3], firstIndex));
+console.log(filter([-2, -1, 0, 1, 2], plusOne));
