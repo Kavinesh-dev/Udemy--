@@ -10,7 +10,6 @@ any.set("name", "kavinesh");
 any.set("age", 19);
 any.set("studies", "college");
 any.set(1, "Chennai");
-
 console.log(any);
 
 any
