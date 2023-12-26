@@ -38,11 +38,9 @@ const some = restaurant.add ? restaurant.add : "Kavinesh";
 console.log(some);
 
 //Using || (or) operator
-
 console.log(restaurant.add || "kavinesh");
 
 //Using && (and) operator
-
 console.log(restaurant.add && "Kavinesh");
 
 //Using nullish coalescing operator ??
