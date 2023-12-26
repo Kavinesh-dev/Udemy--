@@ -19,7 +19,7 @@ const restaurant = {
     },
   },
   order: function (startIndex, mainIndex) {
-    return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
+    return [this.categories[startIndex], this.starterMenu[mainIndex]];
   },
 
   userOrder: function ({ startIndexValue, mainIndexValue, address, time }) {
@@ -33,11 +33,20 @@ const restaurant = {
   },
 };
 
-// console.log("hi")
+const subjects = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(subjects);
 
-let value = 0;
-console.log(value ?? 10);
-console.log(value || 10);
-console.log(value && 10);
-if (value) console.log("Hi");
-else console.log("No");
+// for(const item of subjects.entries()) console.log(item)
+
+for (const [i, l] of subjects.entries()) {
+  // console.log(`${i + 1}: ${l}`)
+}
+
+//Looping over values, keys, and entries
+
+const openHr = Object.entries(restaurant.openingHours);
+// console.log(open);
+
+for (const [key, { opening, closing }] of openHr) {
+  console.log(`On ${key} we are open at ${opening} and close at ${closing}`);
+}

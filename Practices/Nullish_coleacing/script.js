@@ -19,7 +19,7 @@ const restaurant = {
     },
   },
   order: function (startIndex, mainIndex) {
-    return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
+    return [this.categories[startIndex], this.starterMenu[mainIndex]];
   },
 
   userOrder: function ({ startIndexValue, mainIndexValue, address, time }) {
@@ -33,11 +33,35 @@ const restaurant = {
   },
 };
 
-// console.log("hi")
+//Using ? (ternary) operator
+const some = restaurant.add ? restaurant.add : "Kavinesh";
+console.log(some);
 
-let value = 0;
-console.log(value ?? 10);
-console.log(value || 10);
-console.log(value && 10);
-if (value) console.log("Hi");
-else console.log("No");
+//Using || (or) operator
+
+console.log(restaurant.add || "kavinesh");
+
+//Using && (and) operator
+
+console.log(restaurant.add && "Kavinesh");
+
+//Using nullish coalescing operator ??
+//Undefined null false - these the only values that considered as negative
+
+let items_available = 0;
+
+console.log(items_available ? 10 : items_available);
+
+console.log(items_available || "False it");
+console.log(items_available && "False it");
+console.log(items_available ?? "false");
+
+const hello = [10, 20, 30, 40, 50];
+
+for (let i = 0; i < hello.length; i++) {
+    if (i === 4 && hello[i] === 50) {
+        console.log("Hello");
+    } else {
+        console.log("Null");
+    }
+}
