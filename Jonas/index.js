@@ -365,30 +365,75 @@
 
 // console.log(reduce(nums, sum, init))
 
-var filter = function (arr, fn) {
-  var result = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (fn(arr[i], i)) {
-      result.push(arr[i]);
+// var filter = function (arr, fn) {
+//   var result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (fn(arr[i], i)) {
+//       result.push(arr[i]);
+//     }
+//   }
+//   return result;
+// };
+
+// function greaterThan(n) {
+//   console.log(n);
+//   return n >= 10;
+// }
+// function firstIndex(n, i) {
+//   console.log(n, i);
+//   return i === 0;
+// }
+
+// function plusOne(n) {
+//   console.log(n);
+//   return n + 1;
+// }
+
+// console.log(filter([0, 10, 20, 30], greaterThan));
+// console.log(filter([1, 2, 3], firstIndex));
+// console.log(filter([-2, -1, 0, 1, 2], plusOne));
+
+// var compose = function (functions) {
+//   if (functions.length === 0) {
+//     return function (x) {
+//       return x;
+//     };
+//   } else {
+//     return function (x) {
+//       var result = x;
+//       for (var i = functions.length - 1; i >= 0; i--) {
+//         result = functions[i](result);
+//       }
+//       return result;
+//     };
+//   };
+// };
+
+// var composedFunction = compose([x => 10 * x, x => 10 * x, x => 10 * x]);
+// var result = composedFunction(1);
+// console.log(result);
+
+// function argmentsLength(...args){
+//   return args.length;
+// }
+// console.log(argmentsLength(1,2,3,4,6,7))/
+var once = function (fn) {
+  var result;
+  var hasDone;
+
+  return function (...args) {
+    if (!hasDone) {
+      hasDone = true;
+      result = fn(...args);
+      return result;
+    } else {
+      return undefined;
     }
-  }
-  return result;
+  };
 };
 
-function greaterThan(n) {
-  console.log(n);
-  return n >= 10;
-}
-function firstIndex(n, i) {
-  console.log(n, i);
-  return i === 0;
-}
+let fn = (a, b, c) => a + b + c;
+let onceFn = once(fn);
 
-function plusOne(n) {
-  console.log(n);
-  return n + 1;
-}
-
-console.log(filter([0, 10, 20, 30], greaterThan));
-console.log(filter([1, 2, 3], firstIndex));
-console.log(filter([-2, -1, 0, 1, 2], plusOne));
+console.log(onceFn(1, 2, 3)); // Output: 6
+console.log(onceFn(2, 3, 6)); // Output: undefined (doesn't call fn again)
