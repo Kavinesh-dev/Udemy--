@@ -37,7 +37,6 @@ const { openingHours } = restaurant;
 //Looping over objects
 const property = Object.keys(openingHours);
 console.log(property);
-
 let openStr = `We open our restaurant ${property.length} days a week:`;
 
 // for (const day of Object.keys(openingHours)) {
