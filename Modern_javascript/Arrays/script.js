@@ -119,3 +119,46 @@ const arr = ["Kavinesh", "Santhosh", "Divyesh", "Saamy", "Google", "Free4Talk"];
 // const recived = mobile_Phones.forEach((item) => {
 //   return item.price;
 // });
+
+//Methods returning new array
+//Map 
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+// doubled is a new array: [2, 4, 6, 8]
+console.log(doubled);
+
+//filter
+const numbers1 = [1, 2, 3, 4];
+const evenNumbers = numbers1.filter(num => num % 2 === 0);
+// evenNumbers is a new array: [2, 4]
+console.log(evenNumbers);
+
+//slice
+const fruits = ['apple', 'banana', 'orange', 'grape'];
+const slicedFruits = fruits.slice(1, 3);
+// slicedFruits is a new array: ['banana', 'orange']
+console.log(slicedFruits);
+
+//concat
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combinedArray = arr1.concat(arr2);
+// combinedArray is a new array: [1, 2, 3, 4]
+console.log(combinedArray);
+
+//flat
+const nestedArray = [1, [2, 3], [4, 5]];
+const flatArray = nestedArray.flat();
+// flatArray is a new array: [1, 2, 3, 4, 5]
+console.log(flatArray);
+
+//flatMap
+const numbers3 = [1, 2, 3];
+const doubledAndFlattened = numbers3.flatMap(num => [num * 2, num * 3]);
+// doubledAndFlattened is a new array: [2, 3, 4, 6, 6, 9]
+console.log(doubledAndFlattened);
+
+const numbers4 = [1, 2, 3, 4];
+numbers4.reverse();
+console.log(numbers);
+// reversedArray is a new array: [4, 3, 2, 1], and numbers is modified to [4, 3, 2, 1]
