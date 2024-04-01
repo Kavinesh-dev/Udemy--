@@ -90,7 +90,6 @@ tabContainer.addEventListener('click', function (e) {
 });
 
 //Navbar menu fade animation
-
 const navAnimation = function (e) {
   // console.log(this);
   if (e.target.classList.contains('nav__link')) {
@@ -126,8 +125,9 @@ nav.addEventListener('mouseout', navAnimation.bind(1));
 //     console.log(entry);
 //   });
 // };
+
 const navHeight = nav.getBoundingClientRect().height;
-// console.log(navHeight.height);
+// console.log(navHeight);
 const stickyNav = function (entries, observer) {
   const [entry] = entries;
   console.log(entry);
@@ -142,40 +142,22 @@ const obsOptions = {
 const observer = new IntersectionObserver(stickyNav, obsOptions);
 observer.observe(header);
 
-// nav.addEventListener('mouseover', function (e) {
-//   if (e.target.classList.contains('nav__link')) {
-//     const link = e.target;
-//     // console.log(link);
-//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-//     console.log(siblings);
-//     const logo = link.closest('.nav').querySelector('img');
-//     // console.log(logo);
+// const navHeight = nav.getBoundingClientRect();
+// // console.log(navHight.height);
+// const observer = function (entries) {
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// };
 
-//     siblings.forEach(function (curEl) {
-//       if (curEl !== link) {
-//         curEl.style.opacity = 0.5;
-//       }
-//     });
-//     logo.style.opacity = 0.5;
-//   }
-// });
-// nav.addEventListener('mouseout', function (e) {
-//   if (e.target.classList.contains('nav__link')) {
-//     const link = e.target;
-//     // console.log(link);
-//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-//     console.log(siblings);
-//     const logo = link.closest('.nav').querySelector('img');
-//     // console.log(logo);
+// const observerObj = {
+//   root: null,
+//   threshold: 0,
+//   rootMargin: `-${navHeight.height}px`,
+// };
 
-//     siblings.forEach(function (curEl) {
-//       if (curEl !== link) {
-//         curEl.style.opacity = 1;
-//       }
-//     });
-//     logo.style.opacity = 1;
-//   }
-// });
+// const intersectionApi = new IntersectionObserver(observer, observerObj);
+// intersectionApi.observe(header);
 
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
