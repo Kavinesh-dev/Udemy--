@@ -16,6 +16,8 @@ const tabContainer = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 const nav = document.querySelector('.nav');
 const s1coords = section1.getBoundingClientRect();
+const sectionTargets = document.querySelectorAll('section');
+const imgTargets = document.querySelectorAll('img[data-src]');
 
 const openModal = function (e) {
   e.preventDefa6ult();
@@ -99,7 +101,6 @@ const navAnimation = function (e) {
     // console.log(siblings);
     const logo = link.closest('.nav').querySelector('img');
     // console.log(logo);
-
     siblings.forEach(curEl => {
       if (curEl !== link) {
         curEl.style.opacity = this;
@@ -120,17 +121,11 @@ nav.addEventListener('mouseout', navAnimation.bind(1));
 // });
 
 //Sticky navigation using - Intersection Observer API
-// const obsFunc = function (entries, observer) {
-//   entries.forEach(entry => {
-//     console.log(entry);
-//   });
-// };
-
 const navHeight = nav.getBoundingClientRect().height;
 // console.log(navHeight);
 const stickyNav = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 };
@@ -142,23 +137,128 @@ const obsOptions = {
 const observer = new IntersectionObserver(stickyNav, obsOptions);
 observer.observe(header);
 
-// const navHeight = nav.getBoundingClientRect();
-// // console.log(navHight.height);
-// const observer = function (entries) {
-//   const [entry] = entries;
-//   if (!entry.isIntersecting) nav.classList.add('sticky');
-//   else nav.classList.remove('sticky');
-// };
+//Revealing elements on scroll
+const secFunc = function (entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+};
+const secObserver = new IntersectionObserver(secFunc, {
+  root: null,
+  threshold: 0.15,
+});
+sectionTargets.forEach(el => {
+  secObserver.observe(el);
+  el.classList.add('section--hidden');
+});
 
-// const observerObj = {
-//   root: null,
-//   threshold: 0,
-//   rootMargin: `-${navHeight.height}px`,
-// };
+//Lazy loading images
+const imgFunc = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+};
 
-// const intersectionApi = new IntersectionObserver(observer, observerObj);
-// intersectionApi.observe(header);
+const imgObserver = new IntersectionObserver(imgFunc, {
+  root: null,
+  threshold: 0,
+  rootMargin: '-150px',
+});
+imgTargets.forEach(curEl => imgObserver.observe(curEl));
 
+//Building a slider component
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+  const dotParent = document.querySelector('.dots');
+
+  let curSlide = 0;
+  const maxSlide = slides.length;
+
+  const goToSlide = function (slide) {
+    slides.forEach((s, i) => {
+      s.style.transform = `translateX(${100 * (i - slide)}%)`;
+    });
+  };
+
+  //Adding or creating dots to the dot container
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  //Based on the dataset value when we click the dot it moves to the respective slide
+  dotParent.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const slide = e.target.dataset.slide;
+      goToSlide(slide);
+      showActiveDot(slide);
+    }
+  });
+  //Adding class for a state of dot!
+  const showActiveDot = function (slide) {
+    const some = document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  //Next Slide
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goToSlide(curSlide);
+    showActiveDot(curSlide);
+  };
+  //Previous slide
+  const previousSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    showActiveDot(curSlide);
+  };
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', previousSlide);
+  //Based on the index value the translate value should be 0, 100, 200, 300 / By using index value we
+  //calculate the translate value by multiplying with 100
+
+  //Using arrow for sliding
+  const keySlide = function (e) {
+    document.addEventListener('keydown', function (e) {
+      e.key === 'ArrowLeft' && previousSlide();
+      e.key === 'ArrowRight' && nextSlide();
+    });
+  };
+
+  const init = function () {
+    goToSlide(0);
+    createDots();
+    showActiveDot(0);
+    keySlide();
+  };
+  init();
+};
+slider();
 ////////////////////////////////////////////////
 ///////////////////////////////////////////////
 //////////////////////////////////////////////
